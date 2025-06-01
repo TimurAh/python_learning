@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block body %}
+
+    {% if last_city and not city_name %}
+        <div class="alert alert-info mt-3 text-center">
+            Вы недавно смотрели погоду в городе <strong>{{ last_city }}</strong>.
+            <form method="POST" class="d-inline">
+                <input type="hidden" name="city" value="{{ last_city }}">
+                <button type="submit" class="btn btn-sm btn-outline-primary">Посмотреть снова</button>
+            </form>
+        </div>
+    {% endif %}
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+
+    {% if weather %}
+        <div class="show_city"><h2 class="text-center my-4">{{ city_name }}</h2></div>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">Погода сейчас</h5>
+                <p><strong>🌡️ Температура:</strong> {{ weather.temperature }} °C</p>
+                <p><strong>💨 Скорость ветра:</strong> {{ weather.windspeed }} км/ч</p>
+                <p><strong>↖ Направление ветра:</strong> {{ weather.winddirection }}°</p>
+                <p><strong>🕔 Время измерения:</strong> {{ weather.time }}</p>
+            </div>
+        </div>
+    {% endif %}
+    {% if forecast %}
+        <h3 class="mt-5">Прогноз на несколько дней</h3>
+        <div class="row">
+            {% for day in forecast %}
+                <div class="col-md-4 mt-3">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ day.date }}</h5>
+                            <p>🌡️ Макс: {{ day.temp_max }}°C</p>
+                            <p>🌡️ Мин: {{ day.temp_min }}°C</p>
+                            <p>💧 Осадки: {{ day.precipitation }} мм</p>
+                            <p>💨 Ветер: {{ day.windspeed }} км/ч</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+

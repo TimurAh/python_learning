@@ -1,0 +1,38 @@
+/*Header*/
+#header_img{
+    height: 50px;
+    width: 50px;
+
+}
+#header{
+    line-height: normal; /* или 1 */
+    background: ghostwhite;
+    position: sticky;
+    bottom: 0;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    z-index: 1000;
+    -webkit-box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.15);
+    max-height: 80px;
+}
+#mainBody{
+    max-width: 100vh;
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex: 1 1 auto;
+}
+body{
+    background: whitesmoke;
+}
+.page{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+#footer{
+    z-index: 1000;
+}
